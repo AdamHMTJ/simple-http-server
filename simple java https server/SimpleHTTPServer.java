@@ -16,11 +16,12 @@ import javax.swing.text.DefaultCaret;
 public class SimpleHTTPServer {
 
     public static void main(String[] args) throws Exception{
-        int port = 9406;
+        int port = 8080;
         final ServerSocket server = new ServerSocket(port);
         System.out.println("Listening for connection on port " + port + " ....");
-        String videoPath = "\"C:\\Users\\23231849\\Pictures\\Camera Roll\\WIN_20260914_13_10_15_Pro.mp4\"";
-        byte[] videoArray = Files.readAllBytes(Paths.get(videoPath));
+        String videoPathSkl = "C:\\Users\\23231849\\Pictures\\Camera Roll\\WIN_20260914_13_10_15_Pro.mp4";
+        String videoPathhome = "C:\\Users\\mroue\\Videos\\Roblox\\Roblox-2026-08-09T23_48_33.331Z.mp4";
+        byte[] videoArray = Files.readAllBytes(Paths.get(videoPathhome));
         
        while (true){
         Socket client = server.accept();
@@ -33,9 +34,11 @@ public class SimpleHTTPServer {
         System.out.println(str);
         OutputStream output = client.getOutputStream();
         String data = "Output Test Message";
-        String response = "HTTP/1.1 200 OK\nContent-Length: " + data.length() + "\n\n" + data;
+        String response = "HTTP/1.1 200 OK\r\nContent-Length: " + videoArray.length + "\r\nContent-Type: video/mp4" + "\r\n\r\n";
         System.out.println(response);
         output.write(response.getBytes());
+        output.write(videoArray);
+        output.flush();
        }
 
 

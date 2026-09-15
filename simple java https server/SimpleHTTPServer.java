@@ -39,6 +39,8 @@ public class SimpleHTTPServer {
         output.write(response.getBytes());
         output.write(videoArray);
         output.flush();
+        //needs buffer
+        System.out.println("successfully sent video data");
        }
 
 

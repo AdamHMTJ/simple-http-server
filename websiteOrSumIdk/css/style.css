@@ -1,0 +1,15 @@
+p{
+    color: white;
+    background: blue;
+    font-size: 100px;
+    font-style: italic;
+}
+.box{
+    width: 100px;
+    height: 100px;
+    background: green;
+    margin: 10px;
+    padding: 20px;
+    border: 2px solid red;
+    float: left;
+}

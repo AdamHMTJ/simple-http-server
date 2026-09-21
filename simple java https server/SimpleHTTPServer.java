@@ -6,6 +6,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.charset.spi.CharsetProvider;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -36,10 +37,10 @@ public class SimpleHTTPServer {
         String data = "Output Test Message";
         String response = "HTTP/1.1 200 OK\r\nContent-Length: " + videoArray.length + "\r\nContent-Type: video/mp4" + "\r\n\r\n";
         System.out.println(response);
-        output.write(response.getBytes());
-        output.write(videoArray);
-        output.flush();
-        //needs buffer
+        BufferedOutputStream bufferedOutput = new BufferedOutputStream(output);
+        bufferedOutput.write(response.getBytes());
+        bufferedOutput.write(videoArray);
+        bufferedOutput.flush();
         System.out.println("successfully sent video data");
        }
 
